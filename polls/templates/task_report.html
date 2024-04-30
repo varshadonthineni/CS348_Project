@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Task Report</h2>
+  <form method="get">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" name="submit" value="Generate Report">
+  </form>
+  
+  {% if tasks %}
+    <table>
+      <thead>
+        <tr>
+          <th>Task Name</th>
+          <th>Description</th>
+          <th>Due Date</th>
+          <th>Status</th>
+          <th>Priority</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for task in tasks %}
+          <tr>
+            <td>{{ task.name }}</td>
+            <td>{{ task.description }}</td>
+            <td>{{ task.due_date|date:"D, d M Y" }}</td>
+            <td>{{ task.get_status_display }}</td>
+            <td>{{ task.get_priority_display }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>No tasks to display. Adjust your filters and try again.</p>
+  {% endif %}
+{% endblock %}
+

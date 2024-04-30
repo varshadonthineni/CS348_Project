@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Reports</title>
+</head>
+<body>
+    <h1>Task Reports</h1>
+    <form method="get" action="{% url 'polls:task_report' %}">
+        {% csrf_token %}
+        <label for="due_date_range">Due Date Range:</label>
+        <input type="text" id="due_date_range" name="due_date_range" placeholder="YYYY-MM-DD to YYYY-MM-DD">
+        <label for="status">Status:</label>
+        <select id="status" name="status">
+            <option value="">--Select Status--</option>
+            <option value="1">Pending</option>
+            <option value="2">Completed</option>
+            <option value="3">In Progress</option>
+            <option value="4">On Hold</option>
+        </select>
+        <label for="priority">Priority:</label>
+        <select id="priority" name="priority">
+            <option value="">--Select Priority--</option>
+            <option value="1">Low</option>
+            <option value="2">Medium</option>
+            <option value="3">High</option>
+        </select>
+        <label for="user">User:</label>
+        <input type="text" id="user" name="user">
+        <input type="submit" value="Generate Report">
+    </form>
+</body>
+</html>
